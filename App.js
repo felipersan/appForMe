@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, ImageBackground} from 'react-native';
 
 import Frases from './src/pages/Page1';
 import RoutesTabNavigator from './src/Routes';
