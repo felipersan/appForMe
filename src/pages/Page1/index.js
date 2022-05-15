@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, StyleSheet} from 'react-native';
 
 export default function Frases() {
   const [frases, setFrases] = useState([]);
   const [frase, setFrase] = useState();
-  const [position, setPosition] = useState();
 
   var dados = [];
   var pos = 0;
@@ -31,12 +30,21 @@ export default function Frases() {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Button title="carregar frases" onPress={carregaFrases} />
       <Button title="mostrar frases" onPress={escolheFrase} />
 
-      <Text>{frase}</Text>
-      <Text>{position}</Text>
+      <Text style={styles.frase}>{frase}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#121212',
+    flex: 1,
+  },
+  frase: {
+    color: '#fff',
+  },
+});
