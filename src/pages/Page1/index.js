@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, FlatList} from 'react-native';
 
 export default function Frases() {
   const [frases, setFrases] = useState([]);
@@ -22,29 +22,37 @@ export default function Frases() {
     getapi(api_url);
   }
 
-  function escolheFrase() {
-    pos = Math.floor(Math.random() * frases.length);
-    phrase = frases[pos].q;
-    setFrase(phrase);
-    console.log(pos);
-  }
-
   return (
     <View style={styles.container}>
       <Button title="carregar frases" onPress={carregaFrases} />
       <Button title="mostrar frases" onPress={escolheFrase} />
 
-      <Text style={styles.frase}>{frase}</Text>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        data={frases}
+        renderItem={({item}) => <RenderFrases data={item} />}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#121212',
+    backgroundColor: '#fff',
     flex: 1,
   },
   frase: {
     color: '#fff',
   },
+  quote: {
+    marginTop: 30,
+  },
 });
+
+function RenderFrases(props) {
+  return (
+    <View>
+      <Text style={styles.quote}>{props.data.q}</Text>
+    </View>
+  );
+}
